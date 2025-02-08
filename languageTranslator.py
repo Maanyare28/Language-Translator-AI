@@ -1,16 +1,22 @@
 from google import genai
 
-textWeWantTranslated = input("Enter text you want to translate, in what language")
+languageWeAreTranslatingFrom = input("Enter the language you want to translate from: ")
+languageWeAreTranslatingTo = input("Enter the language you to translate to: ")
+textWeWantTranslated = input("Enter text you want to translated: ")
+
+whatWeTranslatingTo = "Translate to: " + languageWeAreTranslatingTo
+whatWeTranslatingFrom = "Translate from: " + languageWeAreTranslatingFrom
+
 
 client = genai.Client(api_key="AIzaSyDS-_EK2JF3DmpJIhJ4xI89b3l1zHWECso")
 response = client.models.generate_content(
-    model="gemini-2.0-flash", contents=textWeWantTranslated
+    model="gemini-2.0-flash", contents=languageWeAreTranslatingFrom + languageWeAreTranslatingTo + textWeWantTranslated
 )
 print(response.text)
 
 
 
-#logic
+
 
 # Create a python window
 
