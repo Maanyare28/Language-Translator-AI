@@ -1,5 +1,6 @@
 from google import genai
-
+import tkinter as tk
+'''
 languageWeAreTranslatingFrom = input("Enter the language you want to translate from: ")
 languageWeAreTranslatingTo = input("Enter the language you to translate to: ")
 textWeWantTranslated = input("Enter text you want to translated: ")
@@ -13,39 +14,36 @@ response = client.models.generate_content(
     model="gemini-2.0-flash", contents=languageWeAreTranslatingFrom + languageWeAreTranslatingTo + textWeWantTranslated
 )
 print(response.text)
-
+'''
 
 
 
 
 # Create a python window
+root = tk.Tk() #basically we make it so instead of always calling tk we just call root
+root.title("Translater") #name of the window
+root.geometry("550x600") #window size
 
+#creating widgets
+#Text to translate Box
+textToTranslateBox = tk.Text(root, height=15, width=30)
+textToTranslateBox.place(x=5, y=50)
 
-#Customize python window so it can look the way I want it to look
+#Text Translated Box
+textTranslatedBox = tk.Text(root, height=15, width=30)
+textTranslatedBox.place(x=300, y=50)
 
-# Have 2 sections one for the language you want to translate from and the other the lagnauge u want translated
-
-# Add a dropdown of all the languages for both
-
-#Have a translate button to translate it 
-
-#Actual Translator
-
-#We gonna make it iterate first before doing design
-
-# textWantedTranslated = input("What do you want translated? ")
-
-#When we get the translated text, we put it into gemini
-#First we ask what language do you want to translate from?
-#Secon we ask what language do you want to translate to?
-#Then we enter the text that we want translated
-
-
-#lets get gemini in here
-#gemini API endpoint
+#Dropdown options
+options = ["English", "Spanish", "German", "French", "Italian", "Portuguese", "Russian", "Japanese", "Korean", "Chinese", "Arabic", "Hindi", "Turkish"]
 
 
 
+
+
+
+root.mainloop()
+
+#Dropdown box to pick
 
 
 
