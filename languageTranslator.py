@@ -1,50 +1,25 @@
-from fnmatch import translate
+
 
 from google import genai
 import tkinter as tk
 from tkinter import ttk
-'''
-languageWeAreTranslatingFrom = input("Enter the language you want to translate from: ")
-languageWeAreTranslatingTo = input("Enter the language you to translate to: ")
-textWeWantTranslated = input("Enter text you want to translated: ")
-
-whatWeTranslatingTo = "Translate to: " + languageWeAreTranslatingTo
-whatWeTranslatingFrom = "Translate from: " + languageWeAreTranslatingFrom
 
 
-client = genai.Client(api_key="AIzaSyDS-_EK2JF3DmpJIhJ4xI89b3l1zHWECso")
-response = client.models.generate_content(
-    model="gemini-2.0-flash", contents=languageWeAreTranslatingFrom + languageWeAreTranslatingTo + textWeWantTranslated
-)
-print(response.text)
-'''
 
-'''
-def on_select(event):
-    translateFromDropdown = translateFrom.get()
-    translateToDropdown = translateTo.get()
-    print(translateToDropdown)
-    print(translateFromDropdown)
-'''
+
 
 def get_TranslateToBox():
-    global content
-    global translateFromDropdown
-    global translateToDropdown
-    content = textToTranslateBox.get("1.0", tk.END).strip()
-    print(content)
-    translateFromDropdown = translateFrom.get()
-    translateToDropdown = translateTo.get()
-    print(translateToDropdown)
-    print(translateFromDropdown)
-    #Gets content
-    #Gets dropdown
-    #translates
+    content = "Translate this text: " + textToTranslateBox.get("1.0", tk.END).strip()
+    translateFromDropdown = "From this language: " + translateFrom.get()
+    translateToDropdown = "To this language: " + translateTo.get()
+    findtuner = "Only give me the translation nothing else."
+    client = genai.Client(api_key="AIzaSyDS-_EK2JF3DmpJIhJ4xI89b3l1zHWECso")
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=content+translateToDropdown+translateFromDropdown+findtuner
+    )
+    textTranslatedBox.insert(tk.END,response.text)
 
-#copy variables out
-textToTranslateBoxSaved = "Translate this text: " + content
-translateFromDropdownSaved = "Translate to this language: " + translateToDropdown
-translateToDropdownSaved = "Translate from this language: " + translateFromDropdown
 
 # Create a python window
 root = tk.Tk() #basically we make it so instead of always calling tk we just call root
@@ -86,22 +61,15 @@ translateButton.place(x=235,y=320)
 
 
 
-'''
-Ok i just need to gget my thoughts out
-soooo, we get the input from the text box then save it in a varaible 
-that says: "text we want to translate from"
-we get the selected dropdown option then save it in a variable that says "Langauge we want to translate to" 
-and "language we want to translate from"
-Then we concatonate it to gemini, starting with language we want to translate from, text we want to translate from,
-then language we want to translate to
-*I tink we need a button at some point to confirm 
-then it outputs it in the textbox text translated.
 
-Then we can work on exceptions such as if the text box is left empty, print("text box is empty enter text")
-'''
 
 
 root.mainloop()
+
+
+
+
+
 
 
 
