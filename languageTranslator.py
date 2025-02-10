@@ -12,12 +12,14 @@ def get_TranslateToBox():
     content = "Translate this text: " + textToTranslateBox.get("1.0", tk.END).strip()
     translateFromDropdown = "From this language: " + translateFrom.get()
     translateToDropdown = "To this language: " + translateTo.get()
-    findtuner = "Only give me the translation nothing else."
+    findtuner = ("Only give me the translation nothing else.")
+    missingStuff = ("If you see that the text or languages were not selected or are missing say so.")
     client = genai.Client(api_key="AIzaSyDS-_EK2JF3DmpJIhJ4xI89b3l1zHWECso")
     response = client.models.generate_content(
         model="gemini-2.0-flash",
-        contents=content+translateToDropdown+translateFromDropdown+findtuner
+        contents=content+translateToDropdown+translateFromDropdown+findtuner+missingStuff
     )
+    textTranslatedBox.delete("1.0", tk.END)
     textTranslatedBox.insert(tk.END,response.text)
 
 
@@ -45,6 +47,7 @@ translateFrom = ttk.Combobox(root, values=options)
 translateFrom.place(x=40,y=20)
 translateFrom.set("Select a Language")
 translateFrom.bind("<<TranslateFromSelected>>", get_TranslateToBox)
+
 
 #For translate to dropdown
 translateTo = ttk.Combobox(root, values=options)
