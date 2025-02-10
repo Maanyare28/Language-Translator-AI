@@ -3,8 +3,7 @@
 from google import genai
 import tkinter as tk
 from tkinter import ttk
-
-
+import pswd
 
 
 
@@ -14,7 +13,7 @@ def get_TranslateToBox():
     translateToDropdown = "To this language: " + translateTo.get()
     findtuner = ("Only give me the translation nothing else.")
     missingStuff = ("If you see that the text or languages were not selected or are missing say so.")
-    client = genai.Client(api_key="AIzaSyDS-_EK2JF3DmpJIhJ4xI89b3l1zHWECso")
+    client = genai.Client(api_key=pswd.gemapikey)
     response = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=content+translateToDropdown+translateFromDropdown+findtuner+missingStuff
